@@ -1,0 +1,613 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin.owl#"
+     xml:base="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:riepkin="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#"
+     xmlns:riepkin1="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin.owl#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#hasSkill -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#hasSkill">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#User"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Skill"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#requireSkill -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#requireSkill">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Career"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Skill"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#usesLanguageBackend -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#usesLanguageBackend">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendFramework"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendLanguage"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#usesLanguageFrontend -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#usesLanguageFrontend">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendFramework"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendLanguage"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#career_id -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#career_id">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Career"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#career_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#career_name">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Career"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#first_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#first_name">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#User"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#last_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#last_name">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#User"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#skill_id -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#skill_id">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Skill"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#skill_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#skill_name">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Skill"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#user_id -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#user_id">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#User"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Backend -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Backend">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#WebProgramming"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Frontend"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendFramework -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendFramework">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Backend"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendLanguage -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Backend"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendTechnology -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendTechnology">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Backend"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Career -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Career"/>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Database -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Database">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Backend"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Frontend -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Frontend">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#WebProgramming"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendFramework -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendFramework">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Frontend"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendLanguage -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Frontend"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendTechonogy -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendTechonogy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Frontend"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#NonRelational -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#NonRelational">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Database"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Relational"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Relational -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Relational">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Database"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Skill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Skill"/>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#User -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#User"/>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#WebProgramming -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#WebProgramming">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Angular -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Angular">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendFramework"/>
+        <riepkin:usesLanguageBackend rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#JS"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Angular</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendDeveloperCareer -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendDeveloperCareer">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Career"/>
+        <riepkin:requireSkill rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Blockchain"/>
+        <riepkin:requireSkill rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Laravel"/>
+        <riepkin:career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</riepkin:career_id>
+        <riepkin:career_name>Backend developer</riepkin:career_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Blockchain -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Blockchain">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendTechnology"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blockchain</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Bootstrap -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Bootstrap">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendFramework"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bootstrap</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#CSS -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#CSS">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendLanguage"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CSS</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#DOM -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#DOM">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendTechonogy"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DOM</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Django -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Django">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendFramework"/>
+        <riepkin:usesLanguageBackend rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Python"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Django</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendDeveloperCareer -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendDeveloperCareer">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Career"/>
+        <riepkin:requireSkill rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#CSS"/>
+        <riepkin:requireSkill rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#HTML"/>
+        <riepkin:requireSkill rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Skeleton"/>
+        <riepkin:career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</riepkin:career_id>
+        <riepkin:career_name>Frontend developer</riepkin:career_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#HTML -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#HTML">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendLanguage"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HTML</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#JS -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#JS">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendLanguage"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">JS</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Java -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Java">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendLanguage"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Java</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Laravel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Laravel">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendFramework"/>
+        <riepkin:usesLanguageBackend rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#PHP"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laravel</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#MicroServices -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#MicroServices">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendTechnology"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">13</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Micro Services</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#MongoDB -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#MongoDB">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#NonRelational"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">14</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MongoDB</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#MySQL -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#MySQL">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Relational"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MySQL</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Nest -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Nest">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendFramework"/>
+        <riepkin:usesLanguageBackend rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#JS"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">16</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nest</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#PHP -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#PHP">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendLanguage"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PHP</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Perl -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Perl">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendLanguage"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">17</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Perl</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#PetrenkoMykhailo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#PetrenkoMykhailo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#User"/>
+        <riepkin:hasSkill rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Angular"/>
+        <riepkin:hasSkill rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#HTML"/>
+        <riepkin:hasSkill rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Laravel"/>
+        <riepkin:first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mykhailo</riepkin:first_name>
+        <riepkin:last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Petrenko</riepkin:last_name>
+        <riepkin:user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</riepkin:user_id>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Python -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Python">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendLanguage"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">19</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#RestAPI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#RestAPI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendTechnology"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">20</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">REST API</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#RiepkinMaksym -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#RiepkinMaksym">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#User"/>
+        <riepkin:hasSkill rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Blockchain"/>
+        <riepkin:hasSkill rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#MySQL"/>
+        <riepkin:hasSkill rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#C++"/>
+        <riepkin:first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maksym</riepkin:first_name>
+        <riepkin:last_name>Riepkin</riepkin:last_name>
+        <riepkin:user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</riepkin:user_id>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#SemanticUI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#SemanticUI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendFramework"/>
+        <riepkin:usesLanguageFrontend rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#HTML"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">21</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SemanticUI</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Skeleton -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Skeleton">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendFramework"/>
+        <riepkin:usesLanguageFrontend rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#CSS"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">22</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Skeleton</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Spring -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Spring">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendFramework"/>
+        <riepkin:usesLanguageBackend rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Java"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">23</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spring</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#jQuery -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#jQuery">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendTechonogy"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">jQuery</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#C++ -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#C++">
+        <rdf:type rdf:resource="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendLanguage"/>
+        <riepkin:skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</riepkin:skill_id>
+        <riepkin:skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C++</riepkin:skill_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendFramework"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendLanguage"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendTechnology"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Database"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendFramework"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#BackendLanguage"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#FrontendTechonogy"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Career"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#Skill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin#User"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.7.2018-12-02T02:23:35Z) https://github.com/owlcs/owlapi -->
+
