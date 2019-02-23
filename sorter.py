@@ -2,16 +2,40 @@ import numpy as np
 from skill import *
 from career import *
 from user import *
+import operator
 
 # if == then (career_skills_len - index) * 2
 # if !=, but use the same language, then (career_skills_len - index) * 1.7
-# if !=, but the same category, then (career_skills_len - index) * 1.5
-# if !=, but the same category(back/front), then (career_skills_len - index) * 1.2
+# if !=, but the same category, then (career_skills_len - index) * (1.2 - 0.1 * how_far_is_father)
+# does not count if father is skill
 class Sorter:
 	@staticmethod
-	def sort_users_for_career(career: Career, users: [User]):
+	def sort_users_for_career(career: Career, users: [User]) -> [User]:
 		for user in users:
 			for userSkill in user.userSkills:
-				for careerSkill in career.careerSkills:
-					if careerSkill.skillId == userSkill.skillId:
-						user.skillWeight
+				user.skillWeight += Sorter.how_many_points_to_give(userSkill, career.careerSkills)
+		users.sort(key=operator.attrgetter("skillWeight"), reverse=True)
+		return users
+
+	@staticmethod
+	def how_many_points_to_give(user_skill: Skill, career_skills: [Skill]) -> float:
+		res = [0]
+		career_skill_len = len(career_skills)
+		for careerSkillIndex in range(career_skill_len):
+			career_skill = career_skills[careerSkillIndex]
+			# user knows exactly what needed
+			if user_skill.skillId == career_skill.skillId:
+				res.append((career_skill_len - careerSkillIndex) * 2)
+
+		for careerSkillIndex in range(career_skill_len):
+			career_skill = career_skills[careerSkillIndex]
+			# user knows framework on the same language as needed
+			if user_skill.usesLanguage != None and user_skill.usesLanguage.skillId == career_skill.skillId:
+				res.append((career_skill_len - careerSkillIndex) * 1.7)
+			# user knows language which uses needed framework
+			if career_skill.usesLanguage != None and user_skill.skillId == career_skill.usesLanguage.skillId:
+				res.append((career_skill_len - careerSkillIndex) * 1.7)
+		return max(res)
+		#TODO: write finding length to common father
+		#for careerSkillIndex in range(career_skill_len):
+		#	career_skill = career_skills[careerSkillIndex]
