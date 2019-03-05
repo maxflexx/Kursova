@@ -4,10 +4,6 @@ from skill import *
 from user import *
 from sorter import *
 
-careers = []
-skills = []
-users = []
-
 
 def group_individuals(individuals):
 	for i in range(len(individuals)):
@@ -16,7 +12,7 @@ def group_individuals(individuals):
 			Career.careers.append(Career(individual.career_id[0], individual.career_name[0], individual.requireSkill))
 			continue
 		if individual.is_a[0].name == User.ontologyName:
-			User.users.append(User(individual.user_id[0], individual.first_name[0], individual.last_name[0], individual.hasSkill))
+			User.users.append(User(individual.user_id[0], individual.first_name[0], individual.last_name[0], individual.wanted_career_id[0], individual.hasSkill))
 			continue
 		else:
 			language = []
@@ -35,7 +31,11 @@ def get_data(onto):
 	group_individuals(individuals)
 
 
-o = owlready.get_ontology("file://RiepkinKursova.owl").load()
-get_data(o)
-u = Sorter.sort_users_for_career(Career.careers[0], User.users)
-print(u[0].userId)
+def load_data():
+	o = owlready.get_ontology("file://RiepkinKursova1.owl").load()
+	get_data(o)
+
+#u = Sorter.sort_users_for_career(Career.careers[0], User.users)
+#print(u[0].userId)
+#print(u[0].firstName)
+#print(u[0].lastName)

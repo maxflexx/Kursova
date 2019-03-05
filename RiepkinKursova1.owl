@@ -144,6 +144,22 @@
     
 
 
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin.owl#total_skill_weight -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin.owl#total_skill_weight">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin.owl#wanted_career_id -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/1/riepkin.owl#wanted_career_id">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -481,6 +497,8 @@
         <riepkin:first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mykhailo</riepkin:first_name>
         <riepkin:last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Petrenko</riepkin:last_name>
         <riepkin:user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</riepkin:user_id>
+        <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+        <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
     </owl:NamedIndividual>
     
 
@@ -515,6 +533,8 @@
         <riepkin:first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maksym</riepkin:first_name>
         <riepkin:last_name>Riepkin</riepkin:last_name>
         <riepkin:user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</riepkin:user_id>
+        <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</total_skill_weight>
+        <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
     </owl:NamedIndividual>
     
 

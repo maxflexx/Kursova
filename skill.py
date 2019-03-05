@@ -1,3 +1,4 @@
+import json
 class Skill:
 	ontologyNames = ['BackendFramework', 'BackendTechnology', 'BackendLanguage', 'NonRelational', 'Relational',
 					 'FrontendFramework', 'FrontendLanguage']
