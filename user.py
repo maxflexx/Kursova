@@ -18,8 +18,11 @@ class User:
 	@staticmethod
 	def user_out(user_array):
 		res = ""
+		if len(user_array) == 0:
+			return "No users"
 		for u in user_array:
 			res += u.firstName + " " + u.lastName + "\n"
 			for skill in u.userSkills:
 				res += "       Skill name: " + skill.skillName + "\n"
 		return res
+

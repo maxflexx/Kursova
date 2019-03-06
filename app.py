@@ -1,7 +1,7 @@
 import telebot
 import constants
 import career
-import index
+import ontologyInteraction
 import sorter
 import user
 
@@ -69,9 +69,11 @@ def career_action_user(message):
         handle_back(message)
         constants.currentCareer = None
 
+
 def career_action(message):
     if message.text == "/GetTheBestCandidates":
-        msg = bot.send_message(message.from_user.id, sorter.Sorter.sort_users_for_career(constants.currentCareer, user.User.users),
+        msg = bot.send_message(message.from_user.id, sorter.Sorter.sort_users_for_career(constants.currentCareer,
+                                    list(filter(lambda x: x.careerId == constants.currentCareer.id, user.User.users))),
                                reply_markup=constants.careerAdminKeyBoard)
         bot.register_next_step_handler(msg, career_action)
     elif message.text == "/GetAllData":
@@ -80,12 +82,46 @@ def career_action(message):
                                reply_markup=constants.careerAdminKeyBoard)
         bot.register_next_step_handler(msg, career_action)
     elif message.text == "/Delete":
-        career.Career.delete_career(constants.currentCareer.id)
+        ontologyInteraction.OntologyInteraction.delete_career(constants.currentCareer.id)
         constants.currentCareer = None
         handle_back(message)
     elif message.text == "/Back":
         handle_back(message)
         constants.currentCareer = None
+
+
+@bot.message_handler(commands=['CreateNewVacancy'])
+def handle_vacancy_creation(message):
+    constants.skill_ids = []
+    constants.career_name = ""
+    msg = bot.send_message(message.from_user.id, "Enter career name", reply_markup= telebot.types.ReplyKeyboardRemove())
+    bot.register_next_step_handler(msg, handle_vacancy_name_enter)
+
+
+def handle_vacancy_name_enter(message):
+    constants.career_name = message.text
+    msg = bot.send_message(message.from_user.id, "Select required skills",
+                           reply_markup=constants.get_skills())
+    bot.register_next_step_handler(msg, skill_selection)
+
+
+def skill_selection(message):
+    if message.text == "CreateNewSkill":
+        print("new skill")
+    elif message.text == "Done":
+        ontologyInteraction.OntologyInteraction.create_new_vacancy(constants.career_name, constants.skill_ids)
+        bot.send_message(message.from_user.id, "New career created")
+        handle_back(message)
+    else:
+        skill_id = str(message.text).split(' ')[0]
+        constants.skill_ids.append(int(skill_id))
+        msg = bot.send_message(message.from_user.id, "Select required skills",
+                               reply_markup=constants.get_skills())
+        bot.register_next_step_handler(msg, skill_selection)
+
+
+
+
 
 
 @bot.message_handler(commands=['Back'])
@@ -97,5 +133,5 @@ def handle_back(message):
 
 if __name__ == "__main__":
     print("Starting bot..")
-    index.load_data()
+    ontologyInteraction.OntologyInteraction.load_data()
     bot.polling(none_stop=True, interval=0)

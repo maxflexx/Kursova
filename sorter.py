@@ -11,11 +11,11 @@ import operator
 class Sorter:
 	@staticmethod
 	def sort_users_for_career(career: Career, users: [User]) -> [User]:
-		for user in users:
-			for userSkill in user.userSkills:
-				user.skillWeight += Sorter.how_many_points_to_give(userSkill, career.careerSkills)
+		for u in users:
+			for userSkill in u.userSkills:
+				u.skillWeight += Sorter.how_many_points_to_give(userSkill, career.careerSkills)
 		users.sort(key=operator.attrgetter("skillWeight"), reverse=True)
-		return user.user_out(users)
+		return User.user_out(users)
 
 	@staticmethod
 	def how_many_points_to_give(user_skill: Skill, career_skills: [Skill]) -> float:
@@ -30,13 +30,14 @@ class Sorter:
 		for careerSkillIndex in range(career_skill_len):
 			career_skill = career_skills[careerSkillIndex]
 			# user knows framework on the same language as needed
-			if user_skill.usesLanguage != None and user_skill.usesLanguage.skillId == career_skill.skillId:
+			if len(user_skill.usesLanguage) != 0 and user_skill.usesLanguage.skillId == career_skill.skillId:
 				res.append((career_skill_len - careerSkillIndex) * 1.5)
 			# user knows language which uses needed framework
-			if career_skill.usesLanguage != None and user_skill.skillId == career_skill.usesLanguage.skillId:
+			if len(career_skill.usesLanguage) != 0 and user_skill.skillId == career_skill.usesLanguage.skillId:
 				res.append((career_skill_len - careerSkillIndex) * 1.5)
 			# user knows framework on same language as needed
-			if career_skill.usesLanguage != None and user_skill.usesLanguage != None and user_skill.skillId == career_skill.skillId:
+			if len(career_skill.usesLanguage) != 0 and len(user_skill.usesLanguage) != 0 \
+				and user_skill.usesLanguage.skillId == career_skill.usesLanguage.skillId:
 				res.append((career_skill_len - careerSkillIndex) * 1.5)
 		return max(res)
 		#TODO: write finding length to common father

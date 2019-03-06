@@ -27,3 +27,9 @@ class Skill:
 			return [None]
 		return result
 
+	@staticmethod
+	def get_owl_skill(skill_id):
+		for s in Skill.owl_skills:
+			if s.skill_id[0] == skill_id:
+				return s
+
