@@ -4,6 +4,7 @@ class Skill:
 					 'FrontendFramework', 'FrontendLanguage']
 
 	skills = []
+	owl_skills = []
 
 	def __init__(self, class_name: str, skill_id: int, skill_name: str, uses_language=[]):
 		self.className: str = class_name

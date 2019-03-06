@@ -5,6 +5,7 @@ class User:
 	ontologyName = "User"
 
 	users = []
+	owl_users = []
 
 	def __init__(self, user_id: int, first_name: str, last_name: str, career_id: int, skills: [Skill]):
 		self.userId: int = user_id

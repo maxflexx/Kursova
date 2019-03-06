@@ -20,8 +20,7 @@ adminKeyBoard.row('/SeeAllVacanciesAdmin')
 adminKeyBoard.row('/Back')
 
 userKeyBoard = types.ReplyKeyboardMarkup(True, False)
-userKeyBoard.row('/See all vacancies')
-userKeyBoard.row('Apply for vacancy')
+userKeyBoard.row('/SeeAllVacancies')
 
 
 currentCareer = None
@@ -32,6 +31,10 @@ careerAdminKeyBoard.row('/GetAllData')
 careerAdminKeyBoard.row('/Delete')
 careerAdminKeyBoard.row('/Back')
 
+careerUserKeyBoard = types.ReplyKeyboardMarkup(True, False)
+careerUserKeyBoard.row('/GetAllData')
+careerUserKeyBoard.row('/Apply')
+careerUserKeyBoard.row('/Back')
 
 
 def get_careers():

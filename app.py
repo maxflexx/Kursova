@@ -27,17 +27,47 @@ def show_all_vacancies(message):
     bot.register_next_step_handler(msg, process_career_select)
 
 
+@bot.message_handler(commands=['SeeAllVacancies'])
+def handle_see_all_vacancies_user(message):
+    msg = bot.send_message(message.from_user.id, "All careers we have",
+                           reply_markup=constants.get_careers())
+    bot.register_next_step_handler(msg, process_career_select_user)
+
+
+def process_career_select_user(message):
+    careerId = str(message.text).split(' ')[0]
+    constants.currentCareer = career.Career.find_career_by_id(int(careerId))
+    if constants.currentCareer == None:
+
+        bot.send_message(message.from_user.id, "Invalid career selected",
+                         reply_markup=constants.userKeyBoard)
+    else:
+        msg = bot.send_message(message.from_user.id, "What do you want to do?",
+                               reply_markup=constants.careerUserKeyBoard)
+    bot.register_next_step_handler(msg, career_action_user)
+
+
 def process_career_select(message):
     careerId = str(message.text).split(' ')[0]
     constants.currentCareer = career.Career.find_career_by_id(int(careerId))
     if constants.currentCareer == None:
         bot.send_message(message.from_user.id, "Invalid career selected",
-                               reply_markup=constants.adminKeyBoard)
+                                   reply_markup= constants.adminKeyBoard)
     else:
         msg = bot.send_message(message.from_user.id, "What do you want to do?",
                          reply_markup=constants.careerAdminKeyBoard)
-        bot.register_next_step_handler(msg, career_action)
+    bot.register_next_step_handler(msg, career_action)
 
+
+def career_action_user(message):
+    if message.text == "/GetAllData":
+        msg = bot.send_message(message.from_user.id,
+                               career.Career.careers_out([constants.currentCareer]),
+                               reply_markup=constants.careerUserKeyBoard)
+        bot.register_next_step_handler(msg, career_action)
+    elif message.text == "/Back":
+        handle_back(message)
+        constants.currentCareer = None
 
 def career_action(message):
     if message.text == "/GetTheBestCandidates":
@@ -49,11 +79,13 @@ def career_action(message):
                                career.Career.careers_out([constants.currentCareer]),
                                reply_markup=constants.careerAdminKeyBoard)
         bot.register_next_step_handler(msg, career_action)
+    elif message.text == "/Delete":
+        career.Career.delete_career(constants.currentCareer.id)
+        constants.currentCareer = None
+        handle_back(message)
     elif message.text == "/Back":
         handle_back(message)
-
-
-
+        constants.currentCareer = None
 
 
 @bot.message_handler(commands=['Back'])
