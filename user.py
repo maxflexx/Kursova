@@ -26,3 +26,11 @@ class User:
 				res += "       Skill name: " + skill.skillName + "\n"
 		return res
 
+	@staticmethod
+	def generate_id():
+		maxi = 0
+		for s in User.owl_users:
+			if maxi < s.user_id[0]:
+				maxi = s.user_id[0]
+		return maxi + 1
+

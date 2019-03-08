@@ -1,6 +1,6 @@
 from owlready2 import *
 
-o = get_ontology("file://Kursova11.owl").load()
+o = get_ontology("file://kursova_march7_evening.owl").load()
 
 
 class Skill(Thing):
@@ -11,23 +11,31 @@ class WebProgramming(Skill):
 	pass
 
 
-class Backend(WebProgramming):
-	pass
-
-
-class BackendFramework(Backend):
+class Framework(WebProgramming):
 	namespace = o
 
 
-class BackendLanguage(Backend):
+class Language(WebProgramming):
 	namespace = o
 
 
-class BackendTechnology(Backend):
+class Technology(WebProgramming):
 	namespace = o
 
 
-class Database(Backend):
+class BackendFramework(Framework):
+	namespace = o
+
+
+class BackendLanguage(Language):
+	namespace = o
+
+
+class BackendTechnology(Technology):
+	namespace = o
+
+
+class Database(BackendTechnology):
 	pass
 
 
@@ -43,80 +51,63 @@ class User(Thing):
 	namespace = o
 
 
-# class usesLanguageBackend(Property):
-# 	namespace = o
-# 	domain = [BackendFramework]
-# 	range = [BackendLanguage]
-#
-#
-# class usesFrameworkBackend(Property):
-# 	namespace = o
-# 	domain = [BackendLanguage]
-# 	range = [BackendFramework]
-# 	owl_inverse_property = usesLanguageBackend
-
-
-class Frontend(WebProgramming):
-	pass
-
-
-class FrontendFramework(Frontend):
+class FrontendFramework(Framework):
 	namespace = o
 
 
-class FrontendLanguage(Frontend):
+class FrontendLanguage(Language):
 	namespace = o
 
 
-class FrontendTechnology(Frontend):
+class FrontendTechnology(Technology):
 	namespace = o
 
 
-# class usesLanguageFrontend(Property):
-# 	namespace = o
-# 	domain = [FrontendFramework]
-# 	range = [FrontendLanguage]
+class usesLanguage(ObjectProperty):
+	namespace = o
+	domain = [Framework]
+	range = [Language]
+
+
+class usesFramework(ObjectProperty):
+	namespace = o
+	domain = [Language]
+	range = [Framework]
+	owl_inverse_property = usesLanguage
 #
 #
-# class usesFrameworkFrontend(Property):
-# 	namespace = o
-# 	domain = [FrontendLanguage]
-# 	range = [FrontendFramework]
-# 	owl_inverse_property = usesLanguageFrontend
-#
-#
-# class skill_name(Property):
-# 	namespace = o
-# 	domain = [Skill]
-# 	range = [str]
-#
-#
-# class skill_id(Property):
-# 	namespace = o
-# 	domain = [Skill]
-# 	range = [int]
+class skill_name(DataProperty):
+	namespace = o
+	domain = [Skill]
+	range = [str]
+
+
+class skill_id(DataProperty):
+	namespace = o
+	domain = [Skill]
+	range = [int]
 
 
 class Career(Thing):
 	namespace = o
 
 
-# class career_name(Property):
-# 	namespace = o
-# 	domain = [Career]
-# 	range = [str]
+class career_name(DataProperty):
+	namespace = o
+	domain = [Career]
+	range = [str]
+
 #
-#
-# class careerid(Property):
-# 	namespace = o
-# 	domain = [Career]
-# 	range = [int]
-#
-#
-# class requireSkill(Property):
-# 	namespace = o
-# 	domain = [Career]
-# 	range = [Skill]
+class career_id(DataProperty):
+	namespace = o
+	domain = [Career]
+	range = [int]
+
+
+class requireSkill(ObjectProperty):
+	namespace = o
+	domain = [Career]
+	range = [Skill]
 
 
 

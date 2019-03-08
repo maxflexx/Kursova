@@ -30,15 +30,21 @@ class Sorter:
 		for careerSkillIndex in range(career_skill_len):
 			career_skill = career_skills[careerSkillIndex]
 			# user knows framework on the same language as needed
-			if len(user_skill.usesLanguage) != 0 and user_skill.usesLanguage.skillId == career_skill.skillId:
-				res.append((career_skill_len - careerSkillIndex) * 1.5)
-			# user knows language which uses needed framework
-			if len(career_skill.usesLanguage) != 0 and user_skill.skillId == career_skill.usesLanguage.skillId:
-				res.append((career_skill_len - careerSkillIndex) * 1.5)
+			if user_skill.usesLanguage != None and len(user_skill.usesLanguage) != 0:
+				for lang in user_skill.usesLanguage:
+					if lang.skillId == career_skill.skillId:
+						res.append((career_skill_len - careerSkillIndex) * 1.5)
+			if career_skill.usesLanguage != None and len(career_skill.usesLanguage) != 0:
+				for lang in career_skill.usesLanguage:
+					if lang.skillId == user_skill.skillId:
+						res.append((career_skill_len - careerSkillIndex) * 1.5)
 			# user knows framework on same language as needed
-			if len(career_skill.usesLanguage) != 0 and len(user_skill.usesLanguage) != 0 \
-				and user_skill.usesLanguage.skillId == career_skill.usesLanguage.skillId:
-				res.append((career_skill_len - careerSkillIndex) * 1.5)
+			if career_skill.usesLanguage != None and len(career_skill.usesLanguage) != 0 and \
+				 user_skill.usesLanguage != None and len(user_skill.usesLanguage) != 0:
+				for lang1 in career_skill.usesLanguage:
+					for lang2 in user_skill.usesLanguage:
+						if lang1.skillId == lang2.skillId:
+							res.append((career_skill_len - careerSkillIndex) * 1.5)
 		return max(res)
 		#TODO: write finding length to common father
 		#for careerSkillIndex in range(career_skill_len):

@@ -64,7 +64,11 @@ def career_action_user(message):
         msg = bot.send_message(message.from_user.id,
                                career.Career.careers_out([constants.currentCareer]),
                                reply_markup=constants.careerUserKeyBoard)
-        bot.register_next_step_handler(msg, career_action)
+        bot.register_next_step_handler(msg, career_action_user)
+    elif message.text == "/Apply":
+        msg = bot.send_message(message.from_user.id, "Enter your last name and first name split with space",
+							   reply_markup=telebot.types.ReplyKeyboardRemove())
+        bot.register_next_step_handler(msg, handle_name_entering)
     elif message.text == "/Back":
         handle_back(message)
         constants.currentCareer = None
@@ -106,22 +110,97 @@ def handle_vacancy_name_enter(message):
 
 
 def skill_selection(message):
-    if message.text == "CreateNewSkill":
-        print("new skill")
-    elif message.text == "Done":
-        ontologyInteraction.OntologyInteraction.create_new_vacancy(constants.career_name, constants.skill_ids)
-        bot.send_message(message.from_user.id, "New career created")
-        handle_back(message)
-    else:
-        skill_id = str(message.text).split(' ')[0]
-        constants.skill_ids.append(int(skill_id))
-        msg = bot.send_message(message.from_user.id, "Select required skills",
+	if message.text == "CreateNewSkill":
+		msg = bot.send_message(message.from_user.id, "What is it?", reply_markup=constants.get_skill_main_categories())
+		bot.register_next_step_handler(msg, skill_creation)
+	elif message.text == "Done":
+		ontologyInteraction.OntologyInteraction.create_new_vacancy(constants.career_name, constants.skill_ids)
+		bot.send_message(message.from_user.id, "New career created")
+		handle_back(message)
+	else:
+		skill_id = str(message.text).split(' ')[0]
+		constants.skill_ids.append(int(skill_id))
+		msg = bot.send_message(message.from_user.id, "Select required skills",
                                reply_markup=constants.get_skills())
-        bot.register_next_step_handler(msg, skill_selection)
+		bot.register_next_step_handler(msg, skill_selection)
 
 
+def skill_creation(message):
+	constants.uses_id = []
+	if message.text == "Framework":
+		msg = bot.send_message(message.from_user.id, "Select which language it uses", reply_markup=constants.get_languages())
+		bot.register_next_step_handler(msg, language_selector)
+	elif message.text == "Back":
+		handle_back(message)
 
 
+def language_selector(message):
+	language_id = int(str(message.text).split(' ')[0])
+	constants.uses_id = [language_id]
+	msg = bot.send_message(message.from_user.id, "Enter new skill name", reply_markup=telebot.types.ReplyKeyboardRemove())
+	bot.register_next_step_handler(msg, skill_name)
+
+
+def skill_name(message):
+	constants.skill_ids.append(ontologyInteraction.OntologyInteraction.create_new_skill(message.text, constants.uses_id))
+	msg = bot.send_message(message.from_user.id, "Select required skills",
+						   reply_markup=constants.get_skills())
+	bot.register_next_step_handler(msg, skill_selection)
+
+
+def handle_name_entering(message):
+	data = str(message.text).split(' ')
+	constants.firstName = data[0]
+	constants.lastName = data[1]
+	msg = bot.send_message(message.from_user.id, "Select required skills",
+						   reply_markup=constants.get_skills())
+	bot.register_next_step_handler(msg, skill_selection_user)
+
+
+def handle_vacancy_name_enter_user(message):
+    constants.currentCareer = career.Career.find_career_by_id(int(str(message.text).split(' ')[0]))
+    msg = bot.send_message(message.from_user.id, "Select required skills",
+                           reply_markup=constants.get_skills())
+    bot.register_next_step_handler(msg, skill_selection_user)
+
+
+def skill_selection_user(message):
+	if message.text == "CreateNewSkill":
+		msg = bot.send_message(message.from_user.id, "What is it?", reply_markup=constants.get_skill_main_categories())
+		bot.register_next_step_handler(msg, skill_creation_user)
+	elif message.text == "Done":
+		ontologyInteraction.OntologyInteraction.create_new_user(constants.firstName, constants.lastName, constants.currentCareer.id, constants.skill_ids)
+		bot.send_message(message.from_user.id, "Application accepted")
+		handle_back(message)
+	else:
+		skill_id = str(message.text).split(' ')[0]
+		constants.skill_ids.append(int(skill_id))
+		msg = bot.send_message(message.from_user.id, "Select required skills",
+                               reply_markup=constants.get_skills())
+		bot.register_next_step_handler(msg, skill_selection_user)
+
+
+def skill_creation_user(message):
+	constants.uses_id = []
+	if message.text == "Framework":
+		msg = bot.send_message(message.from_user.id, "Select which language it uses", reply_markup=constants.get_languages())
+		bot.register_next_step_handler(msg, language_selector_user)
+	elif message.text == "Back":
+		handle_back(message)
+
+
+def language_selector_user(message):
+	language_id = int(str(message.text).split(' ')[0])
+	constants.uses_id = [language_id]
+	msg = bot.send_message(message.from_user.id, "Enter new skill name", reply_markup=telebot.types.ReplyKeyboardRemove())
+	bot.register_next_step_handler(msg, skill_name_user)
+
+
+def skill_name_user(message):
+	constants.skill_ids.append(ontologyInteraction.OntologyInteraction.create_new_skill(message.text, constants.uses_id))
+	msg = bot.send_message(message.from_user.id, "Select required skills",
+						   reply_markup=constants.get_skills())
+	bot.register_next_step_handler(msg, skill_selection_user)
 
 
 @bot.message_handler(commands=['Back'])

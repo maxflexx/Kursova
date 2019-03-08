@@ -28,6 +28,9 @@ userKeyBoard.row('/SeeAllVacancies')
 currentCareer = None
 skill_ids = []
 career_name = ""
+uses_id = None
+firstName = None
+lastName = None
 
 careerAdminKeyBoard = types.ReplyKeyboardMarkup(True, False)
 careerAdminKeyBoard.row('/GetTheBestCandidates')
@@ -63,3 +66,25 @@ def get_careers():
 	for c in career.Career.careers:
 		careersKeyBoard.row(str(c.id) + " " + c.name)
 	return careersKeyBoard
+
+
+# def get_skill_categories():
+# 	skillCategoryKeyboard = types.ReplyKeyboardMarkup(True, False)
+# 	for i in skill.Skill.ontologyNames:
+# 		skillCategoryKeyboard.row(i)
+# 	return skillCategoryKeyboard
+
+
+def get_skill_main_categories():
+	mainCategoryKeyboard = types.ReplyKeyboardMarkup(True, False)
+	mainCategoryKeyboard.row('Framework')
+	mainCategoryKeyboard.row('Back')
+	return mainCategoryKeyboard
+
+
+def get_languages():
+	languagesKeyBoard = types.ReplyKeyboardMarkup(True, False)
+	for s in skill.Skill.skills:
+		if s.className == "BackendLanguage" or s.className == "FrontendLanguage":
+			languagesKeyBoard.row(str(s.skillId) + " " + s.skillName)
+	return languagesKeyBoard
