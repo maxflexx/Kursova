@@ -5,7 +5,7 @@ from user import *
 from sorter import *
 import owlClasses as cl
 
-ontology_file_name = "kursova_march7_evening.owl"
+ontology_file_name = "Ontology.owl"
 
 
 class OntologyInteraction:
@@ -53,7 +53,7 @@ class OntologyInteraction:
 		Career.owl_careers = []
 		Skill.skills = []
 		Skill.owl_skills = []
-		sync_reasoner()
+		sync_reasoner_hermit()
 		OntologyInteraction.get_data(OntologyInteraction.ontology)
 
 	@staticmethod

@@ -211,6 +211,5 @@ def handle_back(message):
 
 
 if __name__ == "__main__":
-    print("Starting bot..")
     ontologyInteraction.OntologyInteraction.load_data()
     bot.polling(none_stop=True, interval=0)

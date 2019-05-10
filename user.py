@@ -20,10 +20,14 @@ class User:
 		res = ""
 		if len(user_array) == 0:
 			return "No users"
+		k = 0
 		for u in user_array:
+			if k >= 10:
+				break
 			res += u.firstName + " " + u.lastName + "\n"
 			for skill in u.userSkills:
 				res += "       Skill name: " + skill.skillName + "\n"
+			k += 1
 		return res
 
 	@staticmethod

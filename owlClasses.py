@@ -1,6 +1,6 @@
 from owlready2 import *
 
-o = get_ontology("file://kursova_march7_evening.owl").load()
+o = get_ontology("file://Ontology.owl").load()
 
 
 class Skill(Thing):

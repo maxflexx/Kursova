@@ -1,0 +1,3279 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/maksim/ontologies/2019/2/kursova"
+         xmlns="http://www.semanticweb.org/maksim/ontologies/2019/2/kursova#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/maksim/ontologies/2019/2/kursova"/>
+
+<owl:ObjectProperty rdf:about="#hasSkill">
+  <rdfs:domain rdf:resource="#User"/>
+  <rdfs:range rdf:resource="#Skill"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#User"/>
+
+<owl:Class rdf:about="#Skill"/>
+
+<owl:ObjectProperty rdf:about="#requireSkill">
+  <rdfs:domain rdf:resource="#Career"/>
+  <rdfs:range rdf:resource="#Skill"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Career"/>
+
+<owl:ObjectProperty rdf:about="#usesFramework">
+  <rdfs:domain rdf:resource="#Language"/>
+  <rdfs:range rdf:resource="#Framework"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  <owl:inverseOf rdf:resource="#usesLanguage"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Language">
+  <rdfs:subClassOf rdf:resource="#WebProgramming"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Framework">
+  <rdfs:subClassOf rdf:resource="#WebProgramming"/>
+</owl:Class>
+
+<owl:ObjectProperty rdf:about="#usesLanguage">
+  <rdfs:domain rdf:resource="#Framework"/>
+  <rdfs:range rdf:resource="#Language"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#WebProgramming">
+  <rdfs:subClassOf rdf:resource="#Skill"/>
+</owl:Class>
+
+<owl:DatatypeProperty rdf:about="#career_id">
+  <rdfs:domain rdf:resource="#Career"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#career_name">
+  <rdfs:domain rdf:resource="#Career"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#first_name">
+  <rdfs:domain rdf:resource="#User"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#last_name">
+  <rdfs:domain rdf:resource="#User"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#skill_id">
+  <rdfs:domain rdf:resource="#Skill"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#skill_name">
+  <rdfs:domain rdf:resource="#Skill"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#total_skill_weight">
+  <rdfs:domain rdf:resource="#User"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#user_id">
+  <rdfs:domain rdf:resource="#User"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#wanted_career_id">
+  <rdfs:domain rdf:resource="#User"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#BackendFramework">
+  <rdfs:subClassOf rdf:resource="#Framework"/>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#usesLanguage"/>
+      <owl:someValuesFrom rdf:resource="#BackendLanguage"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <owl:disjointWith rdf:resource="#FrontendFramework"/>
+</owl:Class>
+
+<owl:Class rdf:about="#BackendLanguage">
+  <rdfs:subClassOf rdf:resource="#Language"/>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#usesFramework"/>
+      <owl:someValuesFrom rdf:resource="#BackendFramework"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <owl:disjointWith rdf:resource="#FrontendLanguage"/>
+</owl:Class>
+
+<owl:Class rdf:about="#FrontendFramework">
+  <rdfs:subClassOf rdf:resource="#Framework"/>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#usesLanguage"/>
+      <owl:someValuesFrom rdf:resource="#FrontendLanguage"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#FrontendLanguage">
+  <rdfs:subClassOf rdf:resource="#Language"/>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#usesFramework"/>
+      <owl:someValuesFrom rdf:resource="#FrontendFramework"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#BackendTechnology">
+  <rdfs:subClassOf rdf:resource="#Technology"/>
+  <owl:disjointWith rdf:resource="#FrontendTechnology"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Technology">
+  <rdfs:subClassOf rdf:resource="#WebProgramming"/>
+</owl:Class>
+
+<owl:Class rdf:about="#FrontendTechnology">
+  <rdfs:subClassOf rdf:resource="#Technology"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Database">
+  <rdfs:subClassOf rdf:resource="#BackendTechnology"/>
+</owl:Class>
+
+<owl:Class rdf:about="#NonRelational">
+  <rdfs:subClassOf rdf:resource="#Database"/>
+  <owl:disjointWith rdf:resource="#Relational"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Relational">
+  <rdfs:subClassOf rdf:resource="#Database"/>
+</owl:Class>
+
+<BackendFramework rdf:about="#Angular">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#JS"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</skill_id>
+  <skill_name>Angular</skill_name>
+</BackendFramework>
+
+<BackendLanguage rdf:about="#JS">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</skill_id>
+  <skill_name>JS</skill_name>
+</BackendLanguage>
+
+<Career rdf:about="#BackendDeveloperCareer">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <requireSkill rdf:resource="#Blockchain"/>
+  <requireSkill rdf:resource="#Laravel"/>
+  <career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</career_id>
+  <career_name>Backend developer</career_name>
+</Career>
+
+<BackendTechnology rdf:about="#Blockchain">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</skill_id>
+  <skill_name>Blockchain</skill_name>
+</BackendTechnology>
+
+<BackendFramework rdf:about="#Laravel">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#PHP"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</skill_id>
+  <skill_name>Laravel</skill_name>
+</BackendFramework>
+
+<BackendLanguage rdf:about="#PHP">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</skill_id>
+  <skill_name>PHP</skill_name>
+</BackendLanguage>
+
+<FrontendTechnology rdf:about="#Bootstrap">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</skill_id>
+  <skill_name>Bootstrap</skill_name>
+</FrontendTechnology>
+
+<FrontendLanguage rdf:about="#CSS">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesFramework rdf:resource="#Skeleton"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</skill_id>
+  <skill_name>CSS</skill_name>
+</FrontendLanguage>
+
+<FrontendFramework rdf:about="#Skeleton">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">22</skill_id>
+  <skill_name>Skeleton</skill_name>
+</FrontendFramework>
+
+<FrontendTechnology rdf:about="#DOM">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</skill_id>
+  <skill_name>DOM</skill_name>
+</FrontendTechnology>
+
+<BackendFramework rdf:about="#Django">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#Python"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</skill_id>
+  <skill_name>Django</skill_name>
+</BackendFramework>
+
+<BackendLanguage rdf:about="#Python">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">19</skill_id>
+  <skill_name>Python</skill_name>
+</BackendLanguage>
+
+<Career rdf:about="#FrontendDeveloperCareer">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <requireSkill rdf:resource="#Bootstrap"/>
+  <requireSkill rdf:resource="#HTML"/>
+  <requireSkill rdf:resource="#Skeleton"/>
+  <career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</career_id>
+  <career_name>Frontend dev</career_name>
+</Career>
+
+<FrontendLanguage rdf:about="#HTML">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesFramework rdf:resource="#SemanticUI"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</skill_id>
+  <skill_name>HTML</skill_name>
+</FrontendLanguage>
+
+<FrontendFramework rdf:about="#SemanticUI">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">21</skill_id>
+  <skill_name>SemanticUI</skill_name>
+</FrontendFramework>
+
+<BackendLanguage rdf:about="#Java">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesFramework rdf:resource="#Spring"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</skill_id>
+  <skill_name>Java</skill_name>
+</BackendLanguage>
+
+<BackendFramework rdf:about="#Spring">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">23</skill_id>
+  <skill_name>Spring</skill_name>
+</BackendFramework>
+
+<BackendTechnology rdf:about="#MicroServices">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">13</skill_id>
+  <skill_name>MicroServices</skill_name>
+</BackendTechnology>
+
+<NonRelational rdf:about="#MongoDB">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">14</skill_id>
+  <skill_name>MongoDB</skill_name>
+</NonRelational>
+
+<Relational rdf:about="#MySQL">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</skill_id>
+  <skill_name>MySQL</skill_name>
+</Relational>
+
+<BackendFramework rdf:about="#Nest">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#JS"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">16</skill_id>
+  <skill_name>Nest</skill_name>
+</BackendFramework>
+
+<BackendLanguage rdf:about="#Perl">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">17</skill_id>
+  <skill_name>Perl</skill_name>
+</BackendLanguage>
+
+<User rdf:about="#Petrenko">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <first_name>Misha</first_name>
+  <last_name>Petrenko</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</wanted_career_id>
+</User>
+
+<FrontendTechnology rdf:about="#jQuery">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</skill_id>
+  <skill_name>jQuery</skill_name>
+</FrontendTechnology>
+
+<BackendTechnology rdf:about="#RestAPI">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">20</skill_id>
+  <skill_name>RestAPI</skill_name>
+</BackendTechnology>
+
+<User rdf:about="#Riepkin">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <first_name>Max</first_name>
+  <last_name>Petrenko</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<BackendLanguage rdf:about="#C++">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</skill_id>
+  <skill_name>C++</skill_name>
+</BackendLanguage>
+
+<Skill rdf:about="#skill1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#C++"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">24</skill_id>
+  <skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Qt</skill_name>
+</Skill>
+
+<Skill rdf:about="#skill2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#PHP"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">25</skill_id>
+  <skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Symfony</skill_name>
+</Skill>
+
+<Skill rdf:about="#skill3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#PHP"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">26</skill_id>
+  <skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yii</skill_name>
+</Skill>
+
+<User rdf:about="#user3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dom</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kon</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<Skill rdf:about="#skill4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#Perl"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">27</skill_id>
+  <skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PerlFramework</skill_name>
+</Skill>
+
+<Skill rdf:about="#skill5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#HTML"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">28</skill_id>
+  <skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HtmlSomeFramework</skill_name>
+</Skill>
+
+<Skill rdf:about="#skill6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#CSS"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">29</skill_id>
+  <skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SomeCSSFramework</skill_name>
+</Skill>
+
+<Skill rdf:about="#skill7">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#PHP"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</skill_id>
+  <skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FCGhjeffw</skill_name>
+</Skill>
+
+<User rdf:about="#user4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Riepkin</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maskym</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</wanted_career_id>
+</User>
+
+<Skill rdf:about="#skill8">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <usesLanguage rdf:resource="#C++"/>
+  <skill_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">31</skill_id>
+  <skill_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Qt</skill_name>
+</Skill>
+
+<User rdf:about="#user5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Riepkin</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maksym</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">icSKGTgcq</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">z</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user7">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PUP</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TXfvY</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user8">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ULKJCuQa</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kuA</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user9">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">aHqeq</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user10">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cbpl</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">QTlGKKm</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user11">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">iQFx</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">13</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user12">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wRw</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hVKWtGjUt</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">14</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user13">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">baYegme</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FlrTNHXB</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user14">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#Java"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">xRVr</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tosCcooMeF</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">16</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user15">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">U</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lgoQPRGC</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">17</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user16">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">L</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KGj</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user17">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TARt</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pqwkw</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">19</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user18">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">c</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hwHlga</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">20</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user19">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ZXOUSD</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">zBgHcpKOWY</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">21</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user20">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">b</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PdPVua</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">22</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user21">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pVsdc</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tiplhb</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">23</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user22">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nEAfLoKt</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">eDOxhQKZk</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">24</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user23">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tnTRgy</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">D</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">25</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user24">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lh</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pgqpkqa</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">26</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user25">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AzfrbTfFn</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RqD</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">27</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user26">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uhA</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pzMG</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">28</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user27">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DBZCetN</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">JeUuSBQx</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">29</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user28">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uwbXsfmv</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">xZoMZwim</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user29">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UIG</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lYo</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">31</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user30">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CiCt</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">xfwRckgIT</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">32</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user31">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Python"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ly</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nSQGqvhF</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">33</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user32">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">gvvjqDXH</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SqNwnGPk</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">34</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user33">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kLFF</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">h</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">35</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user34">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UbA</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">36</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user35">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">QXVzVQZ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LfXRa</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">37</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user36">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">jmGyqcw</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RWbamhvFi</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">38</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user37">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">czFxcUdmj</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ZwyK</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">39</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user38">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vIPqZ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CzTqVifyn</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">40</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user39">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">jxnsi</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OZPbsWfJp</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">41</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user40">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">etN</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">u</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">42</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user41">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">zHmvwvRr</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">g</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">43</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user42">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VGVeOJ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lRxZNbDHR</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">44</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user43">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nz</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ZZA</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">45</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user44">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">aLlvcUFYsn</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dShMInsI</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">46</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user45">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FqbyLljbz</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PKklpzWyNT</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">47</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user46">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GspptgvD</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gvieiw</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">48</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user47">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#C++"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">umhzL</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ACtXxTuh</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">49</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user48">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TSHIcVpfz</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tfg</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">50</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user49">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PIsQsB</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">k</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">51</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user50">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">gB</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NRkB</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">52</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user51">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UuP</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OBc</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">53</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user52">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Java"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WTO</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cZ</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">54</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user53">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GMI</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LfjydBhe</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">55</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user54">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">h</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MToVYHBsbf</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">56</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user55">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">aIIVUeWwcY</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tzTt</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">57</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user56">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HgxjZTZqG</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">58</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user57">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mtps</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nTISW</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">59</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user58">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ib</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dx</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user59">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#Django"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OkvkuByHP</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GQKjh</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">61</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user60">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">YXvi</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McphA</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">62</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user61">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fCb</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AmznQnN</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">63</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user62">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WBbi</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HytLSSY</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">64</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user63">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ZEKhD</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lVBnSS</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">65</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user64">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SCmp</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Qlf</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">66</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user65">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">XH</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">itc</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">67</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user66">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OCuQen</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dppdFwkQY</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">68</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user67">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bDAmrsgZ</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">69</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user68">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HAPwqBkmM</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">U</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">70</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user69">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">eVfIAA</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">iknGrlvWsp</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">71</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user70">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hzPehwbN</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">w</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">72</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user71">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OFfWBgNQFf</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nhxa</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">73</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user72">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lrRuZq</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ZnUzFNG</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">74</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user73">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uJ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GFCNAApbFJ</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">75</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user74">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VgDnji</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">jrZngstNwq</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">76</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user75">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dsizFy</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rRnrges</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">77</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user76">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">R</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UnMhn</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">78</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user77">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tGQOKvK</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MIZ</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">79</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user78">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UQMzpvH</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NH</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">80</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user79">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ICxSBmSxLM</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UVBlpcWlyS</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">81</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user80">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#C++"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">V</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">jSWPKiN</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">82</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user81">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NZPxPh</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kcQHNiZgo</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">83</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user82">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BAEiCAG</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">u</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">84</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user83">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">xlXqKvp</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NEZmCmgG</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">85</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user84">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wE</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">86</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user85">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lLIyTUURmU</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">87</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user86">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BChUF</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">aV</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">88</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user87">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vHXDY</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">89</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user88">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LipGJhZ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">90</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user89">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kqZSJ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">i</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">91</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user90">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">H</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">eqRk</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">92</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user91">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Django"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wsHiRwHLY</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">gKTBYiq</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">93</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user92">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hCgYZod</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BTp</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">94</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user93">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tlyIDcqPj</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GqlSvO</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">95</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user94">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TaABbLDy</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VXUmk</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">96</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user95">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Django"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dNBI</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ev</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">97</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user96">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EdmBStu</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bA</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">98</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user97">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KVldvnuS</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">iMeXJkP</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">99</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user98">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NwziYmCJe</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">McvMPaa</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">100</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user99">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Django"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">u</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pjflcVL</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">101</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user100">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rIlENrg</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">euQkv</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">102</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user101">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PkqAMNjKG</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IFVCwdv</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">103</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user102">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LsQQQPtUc</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VqdyWXDS</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">104</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user103">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">qPvpTPik</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AVphT</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">105</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user104">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wZhHNyIpSc</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ccTrNt</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">106</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user105">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fDyDcGokV</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kQRcGUIL</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">107</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user106">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">atURc</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">twOTgWgi</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">108</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user107">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#Django"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vuuFiSCwW</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UMjmnAuc</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">109</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user108">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">T</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">xb</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">110</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user109">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lg</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">eLfKX</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">111</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user110">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sWciqS</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vmfwpmP</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">112</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user111">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mzJEUHkH</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">QAHvAZNH</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">113</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user112">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lsRnW</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">qTDJreT</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">114</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user113">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">zgZPAYV</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">zSgzKyfxLq</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">115</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user114">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yXO</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OTR</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">116</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user115">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sPEXr</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RhFU</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">117</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user116">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LetwBCpRW</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CMaSUcZ</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">118</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user117">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">L</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sbX</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">119</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user118">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PfFUKMNp</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">120</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user119">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OQOZ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ayPcQ</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">121</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user120">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Java"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OartrZbclc</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vemuybz</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">122</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user121">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">YbAnKBEw</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ybKwPYwGL</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">123</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user122">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Django"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ZdViNF</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yIbnWqJ</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">124</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user123">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Python"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HBcB</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ZDv</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">125</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user124">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">YBm</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HAVY</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">126</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user125">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yvzb</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GsZ</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">127</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user126">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kTNPADaM</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UuYuiU</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">128</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user127">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">qrnNIMJaPb</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hXSLBNvJVR</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">129</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user128">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ARIwqBK</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">w</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">130</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user129">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">zmkXAsQU</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CV</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">131</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user130">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pOnE</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HpD</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">132</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user131">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#Python"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EFq</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fZwGW</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">133</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user132">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#Django"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CGctIgA</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">gfHaXV</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">134</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user133">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">JIlKfZmJna</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rwgIiCzq</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">135</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user134">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">eVeoQaCAJB</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NmamOEY</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">136</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user135">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RFaTz</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pNrQ</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">137</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user136">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Java"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CIAInBJhF</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yxm</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">138</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user137">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KfgYv</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yAS</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">139</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user138">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">eptilG</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yADQKYePZ</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">140</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user139">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Django"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">l</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wpLjpM</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">141</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user140">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PGwbw</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">r</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">142</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user141">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">YHtbEIKc</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">YV</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">143</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user142">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UpEsvFvE</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EqBBYK</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">144</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user143">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#C++"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yJ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">eAyQWYyNEQ</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">145</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user144">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MQPmy</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">krckG</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">146</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user145">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SI</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AGN</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">147</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user146">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Python"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CeEjM</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ano</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">148</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user147">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ANbYEQweE</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NC</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">149</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user148">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ZWBmBbAJyD</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">w</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">150</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user149">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">qOigGVBo</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IRL</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">151</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user150">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">R</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rlpu</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">152</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user151">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">k</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">clGxbBFje</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">153</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user152">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISkdx</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vheKTZnEZA</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">154</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user153">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">M</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">p</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">155</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user154">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wzeJ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kChgCB</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">156</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user155">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UJS</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">movB</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">157</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user156">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SRaBWuyBYj</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">W</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">158</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user157">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pO</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SmAAso</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">159</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user158">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RNIrDMjerZ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">R</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">160</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user159">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MdNxEiTPlH</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yIZUHU</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">161</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user160">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">moVSi</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">b</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">162</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user161">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OIQvqWvx</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mUIH</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">163</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user162">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ckx</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dh</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">164</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user163">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dutk</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wLQmy</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">165</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user164">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">riIKInAe</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AQVnC</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">166</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user165">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AQ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mUhuV</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">167</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user166">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AbteT</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">w</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">168</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user167">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#Python"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vDSBynf</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AfmeVEqK</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">169</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user168">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">P</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">v</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">170</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user169">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UqEJRwrVMM</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WlWBezbC</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">171</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user170">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IcoXKonMG</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dRQvb</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">172</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user171">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">D</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">c</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">173</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user172">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">xa</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ExzFzfQAe</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">174</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user173">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hnlGSdCQ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kOr</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">175</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user174">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BNqREQIT</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">QaLWzMUzyF</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">176</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user175">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">g</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VQeZOAjGF</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">177</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user176">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uTrHoEmY</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FRMH</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">178</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user177">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">gIlJyrFmVR</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">QFdi</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">179</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user178">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ESDTzdOGO</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RjknyvAKA</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">180</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user179">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#MongoDB"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ir</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ZDNXMc</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">181</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user180">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">oejDY</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bgu</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">182</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user181">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uskuULG</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IGhOM</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">183</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user182">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#Django"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISsL</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EdKSZU</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">184</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user183">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FiBJyYOHz</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kURWdn</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">185</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user184">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">YUqLikSNVy</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">L</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">186</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user185">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kXDH</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yAUMmkOv</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">187</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user186">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vlW</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CBTDobeYN</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">188</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user187">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">slaMGLB</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dFFrxaft</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">189</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user188">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WgDNJyeM</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">190</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user189">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kqiBBFaHiq</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">zdGMafB</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">191</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user190">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OCcrTZ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cKy</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">192</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user191">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">jKlWemKpoj</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PC</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">193</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user192">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Spring"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#skill7"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Java"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fVE</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ZF</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">194</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user193">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#MicroServices"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">xE</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uGXLGH</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">195</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user194">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#Python"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AH</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">G</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">196</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user195">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <hasSkill rdf:resource="#skill3"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hE</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lPKts</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">197</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user196">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#Skeleton"/>
+  <hasSkill rdf:resource="#Java"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">xObmYe</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">r</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">198</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user197">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill1"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">r</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">g</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">199</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user198">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#Blockchain"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yBTACa</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IfZsODKnVD</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">200</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user199">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#DOM"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#PHP"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FxUWIQ</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KMRxStX</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">201</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user200">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#RestAPI"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HZyxZmamD</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pGHBlY</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">202</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user201">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#Nest"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Django"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">YKY</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">203</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user202">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#jQuery"/>
+  <hasSkill rdf:resource="#skill5"/>
+  <hasSkill rdf:resource="#skill4"/>
+  <hasSkill rdf:resource="#skill2"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OfApp</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IajMnSLRC</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">204</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user203">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#Perl"/>
+  <hasSkill rdf:resource="#MySQL"/>
+  <hasSkill rdf:resource="#skill8"/>
+  <hasSkill rdf:resource="#skill6"/>
+  <hasSkill rdf:resource="#CSS"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OOAhgdB</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yyJzKDCQdl</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">205</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user204">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#HTML"/>
+  <hasSkill rdf:resource="#JS"/>
+  <hasSkill rdf:resource="#Angular"/>
+  <hasSkill rdf:resource="#C++"/>
+  <hasSkill rdf:resource="#Laravel"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fdFJhcTtL</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rAsCGrXl</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">206</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<User rdf:about="#user205">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSkill rdf:resource="#SemanticUI"/>
+  <hasSkill rdf:resource="#Bootstrap"/>
+  <first_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pMuFewP</first_name>
+  <last_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LLQEHLO</last_name>
+  <total_skill_weight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</total_skill_weight>
+  <user_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">207</user_id>
+  <wanted_career_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wanted_career_id>
+</User>
+
+<owl:AllDisjointClasses>
+  <owl:members rdf:parseType="Collection">
+    <rdf:Description rdf:about="#Framework"/>
+    <rdf:Description rdf:about="#Language"/>
+    <rdf:Description rdf:about="#Technology"/>
+  </owl:members>
+</owl:AllDisjointClasses>
+
+<owl:AllDisjointClasses>
+  <owl:members rdf:parseType="Collection">
+    <rdf:Description rdf:about="#Career"/>
+    <rdf:Description rdf:about="#Skill"/>
+    <rdf:Description rdf:about="#User"/>
+  </owl:members>
+</owl:AllDisjointClasses>
+
+
+</rdf:RDF>
