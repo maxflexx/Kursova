@@ -1,10 +1,8 @@
 import telebot
 import constants
-import career
-import ontologyInteraction
-import sorter
-import user
-
+from ontology import career, user, resume, sorter, ontologyInteraction
+from analyze import resumeAnalyze
+import os
 bot = telebot.TeleBot(constants.key)
 
 
@@ -62,28 +60,44 @@ def process_career_select(message):
 def career_action_user(message):
     if message.text == "/GetAllData":
         msg = bot.send_message(message.from_user.id,
-                               career.Career.careers_out([constants.currentCareer]),
-                               reply_markup=constants.careerUserKeyBoard)
+							   career.Career.careers_out([constants.currentCareer]),
+							   reply_markup=constants.careerUserKeyBoard)
         bot.register_next_step_handler(msg, career_action_user)
     elif message.text == "/Apply":
-        msg = bot.send_message(message.from_user.id, "Enter your last name and first name split with space",
-							   reply_markup=telebot.types.ReplyKeyboardRemove())
-        bot.register_next_step_handler(msg, handle_name_entering)
+        msg = bot.send_message(message.from_user.id, "Send your resume",
+		 					   reply_markup=telebot.types.ReplyKeyboardRemove())
+        bot.register_next_step_handler(msg, handle_resume)
     elif message.text == "/Back":
         handle_back(message)
         constants.currentCareer = None
 
+def handle_resume(message):
+    file_info = bot.get_file(message.document.file_id)
+    downloaded_file = bot.download_file(file_info.file_path)
+    if str(file_info.file_path).endswith(".pdf") == False:
+        msg = bot.send_message(message.from_user.id, "We accept only .pdf files",
+							   reply_markup=telebot.types.ReplyKeyboardRemove())
+        bot.register_next_step_handler(msg, handle_back)
+
+    resume_path = "../resumes" + "/" + constants.currentCareer.name + "/" + message.chat.username + ".pdf"
+    if not os.path.exists("../resumes" + "/" + constants.currentCareer.name):
+        os.makedirs("../resumes" + "/" + constants.currentCareer.name)
+    with open(resume_path, "wb") as new_file:
+        new_file.write(downloaded_file)
+    resumeAnalyze.analyze(resume_path, constants.currentCareer.id)
+    bot.register_next_step_handler(message, handle_back)
+
 
 def career_action(message):
     if message.text == "/GetTheBestCandidates":
-        msg = bot.send_message(message.from_user.id, sorter.Sorter.sort_users_for_career(constants.currentCareer,
-                                    list(filter(lambda x: x.careerId == constants.currentCareer.id, user.User.users))),
-                               reply_markup=constants.careerAdminKeyBoard)
+        msg = bot.send_message(message.from_user.id, sorter.Sorter.sort_resumes_for_career(constants.currentCareer,
+																						 list(filter(lambda x: x.career_id == constants.currentCareer.id, resume.Resume.resumes))),
+							   reply_markup=constants.careerAdminKeyBoard)
         bot.register_next_step_handler(msg, career_action)
     elif message.text == "/GetAllData":
         msg = bot.send_message(message.from_user.id,
-                               career.Career.careers_out([constants.currentCareer]),
-                               reply_markup=constants.careerAdminKeyBoard)
+							   career.Career.careers_out([constants.currentCareer]),
+							   reply_markup=constants.careerAdminKeyBoard)
         bot.register_next_step_handler(msg, career_action)
     elif message.text == "/Delete":
         ontologyInteraction.OntologyInteraction.delete_career(constants.currentCareer.id)
@@ -142,7 +156,8 @@ def language_selector(message):
 
 
 def skill_name(message):
-	constants.skill_ids.append(ontologyInteraction.OntologyInteraction.create_new_skill(message.text, constants.uses_id))
+	constants.skill_ids.append(
+		ontologyInteraction.OntologyInteraction.create_new_skill(message.text, constants.uses_id))
 	msg = bot.send_message(message.from_user.id, "Select required skills",
 						   reply_markup=constants.get_skills())
 	bot.register_next_step_handler(msg, skill_selection)
@@ -197,7 +212,8 @@ def language_selector_user(message):
 
 
 def skill_name_user(message):
-	constants.skill_ids.append(ontologyInteraction.OntologyInteraction.create_new_skill(message.text, constants.uses_id))
+	constants.skill_ids.append(
+		ontologyInteraction.OntologyInteraction.create_new_skill(message.text, constants.uses_id))
 	msg = bot.send_message(message.from_user.id, "Select required skills",
 						   reply_markup=constants.get_skills())
 	bot.register_next_step_handler(msg, skill_selection_user)

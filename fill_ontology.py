@@ -1,6 +1,5 @@
-import ontologyInteraction
 import random
-import skill
+from ontology import skill, ontologyInteraction
 
 ontologyInteraction.OntologyInteraction.load_data()
 

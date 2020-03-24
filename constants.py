@@ -1,6 +1,5 @@
 from telebot import types
-import career
-import skill
+from ontology import career, skill
 import operator
 
 key = '774248413:AAFO2klpR1LX8KyO1E1CFNNC7CPGOoa4ink'
